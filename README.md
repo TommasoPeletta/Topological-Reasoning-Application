@@ -24,5 +24,3 @@ Useful links :
 http://www1.isti.cnr.it/~Massink/PORTO_SLDS/space_invited_DataMod2019.pdf
 
 ```
-
-
