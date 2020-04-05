@@ -3,3 +3,30 @@
 
 
 import "stdlib.imgql"
+
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+
+load image = "map_hereford_basement.png"
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+
+//let gray = or ((r >. 50) & (g >. 50) & (b >. 50), (r>. 120) & (g>. 120) & (b<. 50))
+let gray = (r >. 50) & (g >. 50) & (b >. 50)
+//let gray = (r >. 40) & (r <. 70) & (g >. 40) & (g <. 70) & (b >. 40) & (b <. 70)
+
+save "output/01_gray.png" gray
+
+let background  = touch(gray,border)
+
+save "output/02_background.png" background
+
+
+let thingsMask = flt(5,(!background) \ touch(!background,border))
+save "output/03_thingsMask.png" thingsMask
+
+let maskedImage = rgb(mask(r,thingsMask),mask(g,thingsMask),mask(b,thingsMask))
+save "output/04_maskedImage.png" maskedImage
+
+save "output/00_original_image.png" image
