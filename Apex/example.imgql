@@ -1,5 +1,5 @@
 // A mini-quickstart tutorial for VoxLogicA
-// 
+//
 // Task: remove the background from a simple image, leaving just the coloured items in there.
 
 // To run this example, cd to the directory containing this file and run VoxLogicA on this file
@@ -9,19 +9,19 @@
 //
 // Then compile, and run as follows:
 //
-//    cd src 
+//    cd src
 //    make                          # or release-win, or release-osx, and replace the path below as appropriate
 //
 //    cd ../example                 # this directory
-//    ../releases/VoxLogicA-linux-DATE/VoxLogicA example.imgql          # replace linux with your OS and date with the date you compiled the release    
+//    ../releases/VoxLogicA-linux-DATE/VoxLogicA example.imgql          # replace linux with your OS and date with the date you compiled the release
 
 
 // First, let's import the standard library
 
 import "stdlib.imgql"
+//105 87 84
 
-
-/////// 
+///////
 // Let us also define a simple "smoothen" filter; below, x is a number (radius of smothening), whereas
 // distlt(x,y) is the set of points at distance less than x from the points true in (boolean-valued image) y
 // (see also the paper https://arxiv.org/abs/1811.05677, Section 4, and Section 2 for theory)
@@ -32,7 +32,7 @@ let flt(x,a) = distleq(x,distgeq(x,!a))
 /////
 // Load the image
 
-load image = "apex.jpeg"
+load image = "apexskull.png"
 
 
 /////
@@ -46,22 +46,26 @@ let b = blue(image)
 /////
 // The background is not very coloured; it's grayish. Let us capture it as follows.
 // Coloured items may also have high values for some components, but not for all three!
-// NOTE: we could also have used percentiles(r) (also for g and b components) to avoid 
+// NOTE: we could also have used percentiles(r) (also for g and b components) to avoid
 // referencing an absolute value ("120"). Later you can return here and experiment
 // with that
 
-let tendentToGray = ((r >. 50) & (g >. 50) & (b >. 50)) & !((r <. 100) & (g <. 100) & (b >. 40))
-//let tendentToGray = 
+//let tendentToGray = ((r >. 80) & (g >. 40) & (b >. 60) & (b <. 110)) //& !((r <. 100) & (g <. 100) & (b >. 30))
+//let tendentToGray = distleq(10,((r =. 105) & (g =. 87) & (b =. 85)))
+let tendentToGray = ((r >. 100) & (g >. 75) & (b >. 75)) & (r <. 200) & (g <. 200) & (b <. 200)
+let skullMask = distleq(90,((r <. 1) & (g <. 11) & (b >. 250)))
 
 
+let thingsMask = flt(2,(tendentToGray))
+let skullMask = and(skullMask,thingsMask)
+let maskedskull = rgb(mask(r,skullMask),mask(g,skullMask),mask(b,skullMask))
 /////
 // Save the intermediate result
-// Do check all the intermediate results! 
+// Do check all the intermediate results!
 // (use xdg-open IMAGE_FILE_NAME to open the default image viewer on ubuntu)
 // In the viewer you can use the left and right arrow keys to navigate between images.
 //
 
 save "01_tendentToGray.png" tendentToGray
-
-
-
+save "thingsMask.png" thingsMask
+save "maskedskull.png" maskedskull
