@@ -8,20 +8,16 @@ let r = red(image)
 let g = green(image)
 let b = blue(image)
 
-let marketbuildings = ((r >. 85) & (g >. 75) & (b >. 75)) & (r <. 180) & (g <. 180) & (b <. 180)
+let marketbuildings = or(((r >. 85) & (g >. 75) & (b >. 75)) & (r <. 240) & (g <. 240) & (b <. 240) & !((g >. 200) & (b <. 130)),((r >=. 0) & (g >=. 0) & (b >=. 0)) & (r <. 10) & (g <. 10) & (b <. 10))
 let marketMask0 = distleq(160,((r <. 1) & (g <. 11) & (b >. 250)))
 
-let marketfilter = flt(2,(marketbuildings))
-//let marketfilter = flt(4,(marketbuildings))
+//let marketfilter = flt(5,flt(3,flt(1,(marketbuildings))))
+let marketfilter = flt(4,flt(1,(marketbuildings)))
 let marketMask = and(marketMask0,marketfilter)
 //let maskedmarket = rgb(mask(r,marketMask0),mask(g,marketMask0),mask(b,marketMask0))
 let maskedmarket = rgb(mask(r,marketMask),mask(g,marketMask),mask(b,marketMask))
-/////
-// Save the intermediate result
-// Do check all the intermediate results!
-// (use xdg-open IMAGE_FILE_NAME to open the default image viewer on ubuntu)
-// In the viewer you can use the left and right arrow keys to navigate between images.
-//
+
+
 
 save "marketbuildings.png" marketbuildings
 save "marketfilter.png" marketfilter
