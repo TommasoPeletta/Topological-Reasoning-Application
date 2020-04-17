@@ -8,14 +8,14 @@ let r = red(image)
 let g = green(image)
 let b = blue(image)
 
-let watertreatmentbuildings = ((r >. 85) & (g >. 90) & (b >. 90)) & (r <. 180) & (g <. 180) & (b <. 180)
-let watertreatmentMask0 = distleq(150,((r <. 1) & (g <. 11) & (b >. 250)))
+let watertreatmentbuildings = ((r >. 80) & (g >. 75) & (b >. 75)) & (r <. 180) & (g <. 180) & (b <. 180)
+let watertreatmentMask0 = or(distleq(150,((r <. 1) & (g <. 11) & (b >. 250))),distleq(170,((r <. 1) & (g >. 250) & (b <. 1))))
 
-let watertreatmentfilter = flt(5,flt(2,flt(1,(watertreatmentbuildings))))
+let watertreatmentfilter = flt(6,flt(2,flt(1,(watertreatmentbuildings))))
 //let watertreatmentfilter = flt(4,(watertreatmentbuildings))
 let watertreatmentMask = and(watertreatmentMask0,watertreatmentfilter)
-let maskedwatertreatment = rgb(mask(r,watertreatmentMask0),mask(g,watertreatmentMask0),mask(b,watertreatmentMask0))
-//let maskedwatertreatment = rgb(mask(r,watertreatmentMask),mask(g,watertreatmentMask),mask(b,watertreatmentMask))
+//let maskedwatertreatment = rgb(mask(r,watertreatmentMask0),mask(g,watertreatmentMask0),mask(b,watertreatmentMask0))
+let maskedwatertreatment = rgb(mask(r,watertreatmentMask),mask(g,watertreatmentMask),mask(b,watertreatmentMask))
 /////
 // Save the intermediate result
 // Do check all the intermediate results!
