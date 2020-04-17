@@ -1,0 +1,31 @@
+import "stdlib.imgql"
+
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+load image = "apexlowrepulsor.png"
+
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+
+let lowrepulsorbuildings = ((r >. 85) & (g >. 75) & (b >. 65)) & (r <. 240) & (g <. 230) & (b <. 230)
+let lowrepulsorMask0 = distleq(200,((r <. 1) & (g <. 11) & (b >. 250)))
+let background  = touch(!tendentToGray,border)
+
+let lowrepulsorfilter = flt(5,flt(1,(lowrepulsorbuildings)))
+//let lowrepulsorfilter = flt(4,(lowrepulsorbuildings))
+let lowrepulsorMask = and(lowrepulsorMask0,lowrepulsorfilter)
+//let maskedlowrepulsor = rgb(mask(r,lowrepulsorMask0),mask(g,lowrepulsorMask0),mask(b,lowrepulsorMask0))
+let maskedlowrepulsor = rgb(mask(r,lowrepulsorMask),mask(g,lowrepulsorMask),mask(b,lowrepulsorMask))
+/////
+// Save the intermediate result
+// Do check all the intermediate results!
+// (use xdg-open IMAGE_FILE_NAME to open the default image viewer on ubuntu)
+// In the viewer you can use the left and right arrow keys to navigate between images.
+//
+
+save "lowrepulsorbuildings.png" lowrepulsorbuildings
+save "lowrepulsorfilter.png" lowrepulsorfilter
+save "lowrepulsorMask.png" lowrepulsorMask
+save "lowrepulsorMask0.png" lowrepulsorMask0
+save "../output/maskedlowrepulsor.png" maskedlowrepulsor
