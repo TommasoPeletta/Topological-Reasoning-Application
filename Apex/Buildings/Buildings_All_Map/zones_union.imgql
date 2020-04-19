@@ -7,7 +7,7 @@ import "stdlib.imgql"
 
 let flt(x,a) = distleq(x,distgeq(x,!a))
 
-
+//load image = "Apex_map.jpg"
 
 load image1 = "airbase_buildingsSeg.png"
 load image2 = "artillery_buildingsSeg.png"
@@ -30,7 +30,6 @@ load image18 = "thunderdome_buildingsSeg.png"
 load image19 = "watertreatment_buildingsSeg.png"
 load image20 = "wetlands_buildingsSeg.png"
 
-//load image = "Apex_map.jpg"
 
 //let r = red(image)
 //let g = green(image)
@@ -59,7 +58,7 @@ let r19 = red(image19)
 let r20 = red(image20)
 
 // union of all images
-let union = r1+r2//+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+r13+r14+r15+r16+r17+r18+r19+r20
+let union = r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+r13+r14+r15+r16+r17+r18+r19+r20
 
 save "output/union.png" union
 
