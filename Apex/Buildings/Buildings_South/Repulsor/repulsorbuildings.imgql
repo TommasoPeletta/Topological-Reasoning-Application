@@ -12,7 +12,7 @@ let repulsorbuildings = ((r >. 85) & (g >. 90) & (b >. 90)) & (r <. 180) & (g <.
 let repulsorMask0 = distleq(200,((r <. 1) & (g <. 11) & (b >. 250)))
 
 let repulsorfilter = flt(5,flt(2,flt(1,(repulsorbuildings))))
-//let repulsorfilter = flt(4,(repulsorbuildings))
+//let repulsorfilter = flt(4,flt(2,(repulsorbuildings)))
 let repulsorMask = and(repulsorMask0,repulsorfilter)
 //let maskedrepulsor = rgb(mask(r,repulsorMask0),mask(g,repulsorMask0),mask(b,repulsorMask0))
 let maskedrepulsor = rgb(mask(r,repulsorMask),mask(g,repulsorMask),mask(b,repulsorMask))

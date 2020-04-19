@@ -34,7 +34,7 @@ let b = blue(image)
 
 
 // Segmentation des batiments :
-let buildings = ((r >. 65) & (g >. 55) & (b >. 50)) & (r <. 230) & (g <. 230) & (b <. 230)
+let buildings = ((r >. 65) & (g >. 55) & (b >. 60)) & (r <. 230) & (g <. 230) & (b <. 230)
 save "output/buildings.png" buildings
 
 // Masque avec la zone choisie :

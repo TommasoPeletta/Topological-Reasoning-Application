@@ -34,7 +34,7 @@ let b = blue(image)
 
 
 // Segmentation des batiments :
-let buildings = ((r >. 64) & (g >. 64) & (b >. 64)) & (r <. 200) & (g <. 200) & (b <. 200)
+let buildings = ((r >. 90) & (g >. 64) & (b >. 64)) & (r <. 240) & (g <. 240) & (b <. 240)
 save "output/buildings.png" buildings
 
 // Masque avec la zone choisie :
@@ -42,8 +42,8 @@ let maskCircle = distleq(140,((r >. 250) & (g <. 11) & (b <. 11)))
 save "output/maskCircle.png" maskCircle
 
 // Filtre sur les batiments :
-let buildingsFiltered = flt(6,(buildings))
-//let buildingsFiltered = flt(5,(flt(2,flt(1,(buildings)))))
+//let buildingsFiltered = flt(4,(buildings))
+let buildingsFiltered = flt(10,flt(7,flt(3,(buildings))))
 save "output/buildingsFiltered.png" buildingsFiltered
 
 // Segmentation des batiments de la zone du masque :
