@@ -1,0 +1,36 @@
+import "stdlib.imgql"
+
+// filter function definition
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+// load original image
+load image = "apexBridges.png"
+
+// read image components
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+
+
+// let zone = distleq(10,) // define zone of interest
+let treshold = (r >. 50) & (g >. 50) & (b >. 20) & (b <. 35) & (r <. 100) & (g <. 70) //colour treshold
+
+// smoothing filters
+let filtered1  = touch(!treshold,border)
+let filtered2 = !flt(3,filtered1)
+let filtered3 = flt(2,filtered2)
+
+// Zone of interest only
+// let bridgesMountSeg = and()
+
+// application of original image on result
+let coloured = rgb(mask(r,bridgesMountSeg),mask(g,bridgesMountSeg),mask(b,bridgesMountSeg))
+
+
+// save outputs
+save "./output/treshold.png" treshold
+save "./output/filtered1.png" filtered1
+save "./output/filtered2.png" filtered2
+save "./output/filtered3.png" filtered3
+save "./output/coloured.png" coloured
+//save "../../output/bridgesMountSeg.png" bridgesMountSeg
