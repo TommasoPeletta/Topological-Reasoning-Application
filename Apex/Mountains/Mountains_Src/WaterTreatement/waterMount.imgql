@@ -1,0 +1,40 @@
+import "stdlib.imgql"
+
+// filter function definition
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+// load original image
+load image = "apexWater.png"
+
+// read image components
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+
+// define zone of interest
+let zone = or(distleq(200,((r >. 250) & (g <. 11) & (b <. 11))),distleq(200,((r <. 10) & (g >. 250) & (b <. 11))))
+
+//colour treshold
+let treshold = (r >. 80) & (g >. 60) & (b >. 20) & (b <. 60) & (r <. 130) & (g <. 100)
+
+
+// smoothing filters
+let filtered1 = !flt(2,!treshold)
+let filtered2  = !touch(!filtered1,border)
+let filtered3 = flt(3,filtered2)
+
+// Zone of interest only
+let waterMountSeg = (zone & filtered3) & !touch(zone & filtered3 , !zone)
+
+// application of original image on result
+let coloured = rgb(mask(r,waterMountSeg),mask(g,waterMountSeg),mask(b,waterMountSeg))
+
+
+// save outputs
+save "./output/zone.png" zone
+save "./output/treshold.png" treshold
+save "./output/filtered1.png" filtered1
+save "./output/filtered2.png" filtered2
+save "./output/filtered3.png" filtered3
+save "./output/coloured.png" coloured
+save "../../output/waterMountSeg.png" waterMountSeg

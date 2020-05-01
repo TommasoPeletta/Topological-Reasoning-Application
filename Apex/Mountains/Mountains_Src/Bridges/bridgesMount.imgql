@@ -11,26 +11,30 @@ let r = red(image)
 let g = green(image)
 let b = blue(image)
 
+// define zone of interest
+let zone = or(or(distleq(500,((r >. 250) & (g <. 11) & (b <. 11))),distleq(180,((r <. 10) & (g >. 250) & (b <. 11)))),distleq(160,((r <. 10) & (g <. 10) & (b >. 250))))
 
-// let zone = distleq(10,) // define zone of interest
-let treshold = (r >. 50) & (g >. 50) & (b >. 20) & (b <. 35) & (r <. 100) & (g <. 70) //colour treshold
+//colour treshold
+let treshold = (r >. 50) & (g >. 50) & (b >. 20) & (b <. 40) & (r <. 120) & (g <. 70)
+
 
 // smoothing filters
-let filtered1  = touch(!treshold,border)
-let filtered2 = !flt(3,filtered1)
-let filtered3 = flt(2,filtered2)
+let filtered1 = !flt(3,!treshold)
+let filtered2  = !touch(!filtered1,border)
+let filtered3 = flt(6,flt(2,filtered2))
 
 // Zone of interest only
-// let bridgesMountSeg = and()
+let bridgesMountSeg = (zone & filtered3) & !touch(zone & filtered3 , !zone)
 
 // application of original image on result
 let coloured = rgb(mask(r,bridgesMountSeg),mask(g,bridgesMountSeg),mask(b,bridgesMountSeg))
 
 
 // save outputs
+save "./output/zone.png" zone
 save "./output/treshold.png" treshold
 save "./output/filtered1.png" filtered1
 save "./output/filtered2.png" filtered2
 save "./output/filtered3.png" filtered3
 save "./output/coloured.png" coloured
-//save "../../output/bridgesMountSeg.png" bridgesMountSeg
+save "../../output/bridgesMountSeg.png" bridgesMountSeg

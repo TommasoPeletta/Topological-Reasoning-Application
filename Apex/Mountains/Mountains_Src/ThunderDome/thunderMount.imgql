@@ -1,0 +1,40 @@
+import "stdlib.imgql"
+
+// filter function definition
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+// load original image
+load image = "apexThunder.png"
+
+// read image components
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+
+// define zone of interest
+let zone = or(distleq(220,((r >. 250) & (g <. 11) & (b <. 11))),distleq(220,((r <. 10) & (g >. 250) & (b <. 11))))
+
+//colour treshold
+let treshold = (r >. 40) & (g >. 20) & (b >. 10) & (b <. 25) & (r <. 80) & (g <. 35)
+
+
+// smoothing filters
+let filtered1 = !flt(3,!treshold)
+let filtered2  = !touch(!filtered1,border)
+let filtered3 = flt(10,filtered2)
+
+// Zone of interest only
+let thunderMountSeg = (zone & filtered3)
+
+// application of original image on result
+let coloured = rgb(mask(r,thunderMountSeg),mask(g,thunderMountSeg),mask(b,thunderMountSeg))
+
+
+// save outputs
+save "./output/zone.png" zone
+save "./output/treshold.png" treshold
+save "./output/filtered1.png" filtered1
+save "./output/filtered2.png" filtered2
+save "./output/filtered3.png" filtered3
+save "./output/coloured.png" coloured
+save "../../output/thunderMountSeg.png" thunderMountSeg
