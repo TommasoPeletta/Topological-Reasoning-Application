@@ -4,54 +4,44 @@
 
 import "stdlib.imgql"
 
-
+// Define smoothing filter
 let flt(x,a) = distleq(x,distgeq(x,!a))
 
-
+// Read image
 load image = "swamps.png"
 
 
-
+// Get colour components
 let r = red(image)
 let g = green(image)
 let b = blue(image)
 
 
-//let tendentToGray = (r >. 50) & (g >. 50) & (b >. 20) & (b <. 35) & (r <. 100) & (g <. 70)
-//save "output/tendentToGray.png" tendentToGray
+
+// Color treshold
+let treshold = ((r >. 90) & (g >. 80) & (b >.80)) & (r <. 240) & (g <. 240) & (b <. 240)
+
+// Define zone of interest
+let zone = distleq(170,((r >. 250) & (g <. 11) & (b <. 11)))
 
 
-//let background  = touch(!tendentToGray,border)
-//save "output/background.png" background
-
-// Montagne :
-//let montagne = flt(2,!flt(3,background))
-//save "output/montagne.png" montagne
+// Smoothing filters
+let buildingsFiltered = flt(5,flt(2,(treshold)))
 
 
+// Union with zone of interest
+let buildingsSeg = and(zone, buildingsFiltered)
 
 
-
-
-// Segmentation des batiments :
-let buildings = ((r >. 90) & (g >. 80) & (b >.80)) & (r <. 240) & (g <. 240) & (b <. 240)
-save "output/buildings.png" buildings
-
-// Masque avec la zone choisie :
-let maskCircle = distleq(170,((r >. 250) & (g <. 11) & (b <. 11)))
-save "output/maskCircle.png" maskCircle
-
-// Filtre sur les batiments :
-//let buildingsFiltered = flt(4,(buildings))
-let buildingsFiltered = flt(5,flt(2,(buildings)))
-save "output/buildingsFiltered.png" buildingsFiltered
-
-// Segmentation des batiments de la zone du masque :
-let buildingsSeg = and(maskCircle, buildingsFiltered)
-save "../output/swamps_buildingsSeg.png" buildingsSeg
-
-// Remise des couleurs des batiments segmentes :
+// Colored buildings
 let buildingsSegRGB = rgb(mask(r,buildingsSeg),mask(g,buildingsSeg),mask(b,buildingsSeg))
-save "output/swamps_buildingsSegRGB.png" buildingsSegRGB
 
+
+
+// Save outputs
 save "output/original.png" image
+save "output/buildings.png" treshold
+save "output/zone.png" zone
+save "output/buildingsFiltered.png" buildingsFiltered
+save "../output/swamps_buildingsSeg.png" buildingsSeg
+save "output/swamps_buildingsSegRGB.png" buildingsSegRGB
