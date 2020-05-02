@@ -6,14 +6,17 @@ let flt(x,a) = distleq(x,distgeq(x,!a))
 // load original image
 load image = "mountain_wetlands.png"
 
+
 // read image components
 let r = red(image)
 let g = green(image)
 let b = blue(image)
 
-// Masque avec la zone choisie :
-let maskCircle = distleq(220,((r >. 250) & (g <. 11) & (b <. 11)))
-save "output/maskCircle.png" maskCircle
+
+
+// define zone of interest
+let zone = distleq(220,((r >. 250) & (g <. 11) & (b <. 11)))
+
 
 
 // let zone = distleq(10,) // define zone of interest
@@ -21,22 +24,26 @@ save "output/maskCircle.png" maskCircle
 //let treshold = (r >. 70) & (g >. 70) & (b >. 35) & (r <. 150) & (g <. 100) & (b <. 50) //colour treshold
 //let treshold = (r >. 68) & (g >. 68) & (b >. 25) & (r <. 150) & (g <. 100) & (b <. 45) //colour treshold
 //let treshold = (r >. 68) & (g >. 68) & (b >. 25) & (r <. 150) & (g <. 100) & (b <. 45) //colour treshold
-let treshold = (r >. 70) & (g >. 65) & (b >. 30) & (r <. 145) & (g <. 100) & (b <. 50) //colour treshold
+let treshold = (r >. 70) & (g >. 65) & (b >. 30) & (r <. 140) & (g <. 100) & (b <. 43) //colour treshold
 
 // smoothing filters
-let filtered1  = touch(!treshold,border)
-let filtered2 = !flt(5,filtered1)
-let filtered3 = flt(3,filtered2)
-let filtered4 = flt(1,!touch(!filtered3,border))
+//let filtered1  = touch(!treshold,border)
+//let filtered2 = !flt(5,filtered1)
+//let filtered3 = flt(3,filtered2)
+//let filtered4 = flt(1,!touch(!filtered3,border))
+let filtered1 = !flt(5,!treshold)
+let filtered2 = !touch(!filtered1, border)
+let filtered4 = flt(5,filtered2)
 
 // Zone of interest only
-let seg = and(maskCircle, filtered4)
+let seg = and(zone, filtered4)
 
 // application of original image on result
 let coloured = rgb(mask(r,seg),mask(g,seg),mask(b,seg))
 
 
 // save outputs
+save "output/zone.png" zone
 save "./output/treshold.png" treshold
 save "./output/filtered1.png" filtered1
 save "./output/filtered2.png" filtered2
