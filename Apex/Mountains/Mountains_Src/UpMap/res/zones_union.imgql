@@ -1,0 +1,24 @@
+// Topological Reasoning Application
+// Jonathan Lo, Tommaso Peletta, Adrien Razurel
+
+
+import "stdlib.imgql"
+
+
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+
+load image1 = "upPitLeft_mountain.png"
+load image2 = "upPitRight_mountain.png"
+
+
+
+
+let r1 = red(image1)
+let r2 = red(image2)
+
+// union of all images
+let union = r1+r2
+
+save "../../../output/upMap.png" union
+
