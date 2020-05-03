@@ -1,0 +1,44 @@
+// Topological Reasoning Application
+// Jonathan Lo, Tommaso Peletta, Adrien Razurel
+
+
+import "stdlib.imgql"
+
+
+
+load image1 = "airSkullMountSeg.png"
+load image2 = "artilleryMountSeg.png"
+load image3 = "bridgesMountSeg.png"
+load image4 = "bunkerMountSeg.png"
+load image5 = "downpitMountSeg.png"
+load image6 = "pitMountSeg.png"
+load image7 = "slumlakesMountSeg.png"
+load image8 = "swampsMountSeg.png"
+load image9 = "thunderMountSeg.png"
+load image10 = "upMapMountSeg.png"
+load image11 = "upPitMountSeg.png"
+load image12 = "waterMountSeg.png"
+load image13 = "wetlandsMountSeg.png"
+
+
+let r1 = red(image1)
+let r2 = red(image2)
+let r3 = red(image3)
+let r4 = red(image4)
+let r5 = red(image5)
+let r6 = red(image6)
+let r7 = red(image7)
+let r8 = red(image8)
+let r9 = red(image9)
+let r10 = red(image10)
+let r11 = red(image11)
+let r12 = red(image12)
+let r13 = red(image13)
+
+
+
+
+// union of all images
+let union = r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+r13
+
+save "union/union.png" union

@@ -1,0 +1,48 @@
+// Topological Reasoning Application
+// Jonathan Lo, Tommaso Peletta, Adrien Razurel
+
+
+import "stdlib.imgql"
+
+// Define smoothing filter
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+// Read image
+load image = "wetlands.png"
+
+
+// Get colour components
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+
+
+
+// Color treshold
+let treshold = ((r >. 100) & (g >. 80) & (b >. 80)) & (r <. 240) & (g <. 240) & (b <. 240)
+
+
+// Define zone of interest
+let zone = distleq(155,((r >. 250) & (g <. 11) & (b <. 11)))
+
+
+// Smoothing filters
+let buildingsFiltered = flt(3,(treshold))
+
+
+// Union with zone of interest
+let buildingsSeg = and(zone, buildingsFiltered)
+
+
+// Colored buildings
+let buildingsSegRGB = rgb(mask(r,buildingsSeg),mask(g,buildingsSeg),mask(b,buildingsSeg))
+
+
+
+// Save outputs
+save "output/original.png" image
+save "output/buildings.png" treshold
+save "output/zone.png" zone
+save "output/buildingsFiltered.png" buildingsFiltered
+save "../../output//wetlands_buildingsSeg.png" buildingsSeg
+save "output/wetlands_buildingsSegRGB.png" buildingsSegRGB

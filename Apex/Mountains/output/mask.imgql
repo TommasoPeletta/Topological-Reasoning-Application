@@ -1,0 +1,9 @@
+load image = "apex.png"
+load union = "output/union2.png"
+let r1 = red(union)
+let union = r1 >. 100
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+let mountainSegRGB = rgb(mask(r,union),mask(g,union),mask(b,union))
+save "union/unionColored.png" mountainSegRGB

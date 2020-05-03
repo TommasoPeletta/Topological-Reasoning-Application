@@ -38,4 +38,4 @@ save "./output/filtered2.png" filtered2
 save "./output/filtered3.png" filtered4
 save "./output/original.png" image
 save "./output/coloured.png" coloured
-save "../../output/downpit_mountain.png" seg
+save "../../output/downpitMountSeg.png" seg
