@@ -15,7 +15,7 @@ let b = blue(image)
 let zone = or(distleq(220,((r >. 250) & (g <. 11) & (b <. 11))),distleq(220,((r <. 10) & (g >. 250) & (b <. 11))))
 
 //colour treshold
-let treshold = (r >. 40) & (g >. 20) & (b >. 10) & (b <. 25) & (r <. 80) & (g <. 35)
+let treshold = (r >. 40) & (g >. 20) & (b >. 10) & (b <. 25) & (r <. 80) & (g <. 36)
 
 
 // smoothing filters

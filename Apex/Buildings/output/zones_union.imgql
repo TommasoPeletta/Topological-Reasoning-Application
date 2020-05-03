@@ -1,0 +1,59 @@
+// Topological Reasoning Application
+// Jonathan Lo, Tommaso Peletta, Adrien Razurel
+
+
+import "stdlib.imgql"
+
+
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+
+load image1 = "airbase_buildingsSeg.png"
+load image2 = "artillery_buildingsSeg.png"
+load image3 = "bridges_buildingsSeg.png"
+load image4 = "bunker_buildingsSeg.png"
+load image5 = "cascades_buildingsSeg.png"
+load image6 = "frontbunker_buildingsSeg.png"
+load image7 = "hydrodam_buildingsSeg.png"
+load image8 = "lowetlands_buildingsSeg.png"
+load image9 = "lowrepulsor_buildingsSeg.png"
+load image10 = "market_buildingsSeg.png"
+load image11 = "relay_buildingsSeg.png"
+load image12 = "repulsor_buildingsSeg.png"
+load image13 = "runoff_buildingsSeg.png"
+load image14 = "skull_buildingsSeg.png"
+load image15 = "slum_lakes_buildingsSeg.png"
+load image16 = "swamps_buildingsSeg.png"
+load image17 = "the_pit_buildingsSeg.png"
+load image18 = "thunderdome_buildingsSeg.png"
+load image19 = "watertreatment_buildingsSeg.png"
+load image20 = "wetlands_buildingsSeg.png"
+
+
+
+let r1 = red(image1)
+let r2 = red(image2)
+let r3 = red(image3)
+let r4 = red(image4)
+let r5 = red(image5)
+let r6 = red(image6)
+let r7 = red(image7)
+let r8 = red(image8)
+let r9 = red(image9)
+let r10 = red(image10)
+let r11 = red(image11)
+let r12 = red(image12)
+let r13 = red(image13)
+let r14 = red(image14)
+let r15 = red(image15)
+let r16 = red(image16)
+let r17 = red(image17)
+let r18 = red(image18)
+let r19 = red(image19)
+let r20 = red(image20)
+
+// union of all images
+let union = r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+r13+r14+r15+r16+r17+r18+r19+r20
+
+save "output/union.png" union
+
