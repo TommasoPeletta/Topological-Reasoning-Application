@@ -5,7 +5,7 @@
 import "stdlib.imgql"
 
 
-
+load image0 = "airbaseMountSeg.png"
 load image1 = "airSkullMountSeg.png"
 load image2 = "artilleryMountSeg.png"
 load image3 = "bridgesMountSeg.png"
@@ -20,7 +20,7 @@ load image11 = "upPitMountSeg.png"
 load image12 = "waterMountSeg.png"
 load image13 = "wetlandsMountSeg.png"
 
-
+let r0 = red(image0)
 let r1 = red(image1)
 let r2 = red(image2)
 let r3 = red(image3)
@@ -39,6 +39,6 @@ let r13 = red(image13)
 
 
 // union of all images
-let union = r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+r13
+let union = r0+r1+r2+r3+r4+r5+r6+r7+r8+r9+r10+r11+r12+r13
 
 save "union/union.png" union
