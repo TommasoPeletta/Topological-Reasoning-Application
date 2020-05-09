@@ -1,5 +1,5 @@
 load image = "apex.png"
-load union = "output/union2.png"
+load union = "union/union2.png"
 let r1 = red(union)
 let union = r1 >. 100
 let r = red(image)
