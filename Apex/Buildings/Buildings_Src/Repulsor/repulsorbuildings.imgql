@@ -1,23 +1,48 @@
+// Topological Reasoning Application
+// Jonathan Lo, Tommaso Peletta, Adrien Razurel
+
+
 import "stdlib.imgql"
 
+// Define smoothing filter
 let flt(x,a) = distleq(x,distgeq(x,!a))
 
+// Read image
 load image = "apexrepulsor.png"
 
+
+// Get colour components
 let r = red(image)
 let g = green(image)
 let b = blue(image)
 
-let repulsorbuildings = ((r >. 85) & (g >. 90) & (b >. 90)) & (r <. 180) & (g <. 180) & (b <. 180)
-let repulsorMask0 = distleq(200,((r <. 1) & (g <. 11) & (b >. 250)))
 
-let repulsorfilter = flt(5,flt(2,flt(1,(repulsorbuildings))))
-let repulsorMask = and(repulsorMask0,repulsorfilter)
-let maskedrepulsor = rgb(mask(r,repulsorMask),mask(g,repulsorMask),mask(b,repulsorMask))
+// Color treshold
+let treshold = ((r >. 85) & (g >. 90) & (b >. 90)) & (r <. 180) & (g <. 180) & (b <. 180)
 
 
-save "./output/repulsorbuildings.png" repulsorbuildings
-save "./output/repulsorfilter.png" repulsorfilter
-save "../../output/repulsor_buildingsSeg.png" repulsorMask
-save "./output/repulsorMask0.png" repulsorMask0
-save "./output/maskedrepulsor.png" maskedrepulsor
+// Define zone of interest
+let zone = distleq(200,((r <. 1) & (g <. 11) & (b >. 250)))
+
+
+// Smoothing filters
+let buildingsFiltered = flt(5,flt(2,flt(1,(treshold))))
+
+
+// Union with zone of interest
+let buildingsSeg = and(zone,buildingsFiltered)
+
+
+// Colored buildings
+let buildingsSegRGB = rgb(mask(r,buildingsSeg),mask(g,buildingsSeg),mask(b,buildingsSeg))
+
+
+
+
+// Save outputs
+save "output/original.png" image
+save "output/buildings.png" treshold
+save "output/zone.png" zone
+save "output/buildingsFiltered.png" buildingsFiltered
+save "../../output/repulsor_buildingsSeg.png" buildingsSeg
+save "output/repulsor_buildingsSegRGB.png" buildingsSegRGB
