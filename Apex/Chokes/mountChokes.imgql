@@ -1,12 +1,11 @@
 import "stdlib.imgql"
-
 // filter function definition
 let flt(x,a) = distleq(x,distgeq(x,!a))
 
 // load original image
 
-load image1 = "./Mount_Images/mountain_1.jpg"
-load image2 = "./Mount_Images/mountain_2.jpg"
+load image1 = "./Mount_Images/mountain_56.jpg"
+load image2 = "./Mount_Images/mountain_57.jpg"
 
 // read image components
 let r1 = red(image1)
@@ -15,14 +14,10 @@ let r2 = red(image2)
 let treshold1 = r1 >. 100
 let treshold2 = r2 >. 100
 
-let zone1 = distleq(40, treshold1)
-let zone2 = distleq(40, treshold2)
+let zone1 = distleq(3, treshold1)
+let zone2 = distleq(3, treshold2)
 
 let union = zone1 & zone2 & !treshold1 & !treshold2
+let union1 = touch(union, treshold1) & touch(union, treshold2)
 
-
-save "./output_test/treshold1.png" treshold1
-save "./output_test/treshold2.png" treshold2
-save "./output_test/zone1.png" zone1
-save "./output_test/zone2.png" zone2
-save "./output_test/union.png" union
+save "./output/union42.png" union1

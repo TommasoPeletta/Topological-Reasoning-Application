@@ -1,0 +1,100 @@
+import "stdlib.imgql"
+
+
+// load image
+load image0 = "./union0.png"
+load image1 = "./union1.png"
+load image2 = "./union2.png"
+load image3 = "./union3.png"
+load image4 = "./union4.png"
+load image5 = "./union5.png"
+load image6 = "./union6.png"
+load image7 = "./union7.png"
+load image8 = "./union8.png"
+load image9 = "./union9.png"
+load image10 = "./union10.png"
+load image11 = "./union11.png"
+load image12 = "./union12.png"
+load image13 = "./union13.png"
+load image14 = "./union14.png"
+load image15 = "./union15.png"
+load image16 = "./union16.png"
+load image17 = "./union17.png"
+load image18 = "./union18.png"
+load image19 = "./union19.png"
+load image20 = "./union20.png"
+load image21 = "./union21.png"
+load image22 = "./union22.png"
+load image23 = "./union23.png"
+load image24 = "./union24.png"
+load image25 = "./union25.png"
+load image26 = "./union26.png"
+load image27 = "./union27.png"
+load image28 = "./union28.png"
+load image29 = "./union29.png"
+load image30 = "./union30.png"
+load image31 = "./union31.png"
+load image32 = "./union32.png"
+load image33 = "./union33.png"
+load image34 = "./union34.png"
+load image35 = "./union35.png"
+load image36 = "./union36.png"
+load image37 = "./union37.png"
+load image38 = "./union38.png"
+load image39 = "./union39.png"
+load image40 = "./union40.png"
+load image41 = "./union41.png"
+load image42 = "./union42.png"
+load imagemount = "./mountunion.png"
+
+let rmount = red(imagemount) >. 100
+let r0 = red(image0) >. 100
+let r1 = red(image1) >. 100
+let r2 = red(image2) >. 100
+let r3 = red(image3) >. 100
+let r4 = red(image4) >. 100
+let r5 = red(image5) >. 100
+let r6 = red(image6) >. 100
+let r7 = red(image7) >. 100
+let r8 = red(image8) >. 100
+let r9 = red(image9) >. 100
+let r10 = red(image10) >. 100
+let r11 = red(image11) >. 100
+let r12 = red(image12) >. 100
+let r13 = red(image13) >. 100
+let r14 = red(image14) >. 100
+let r15 = red(image15) >. 100
+let r16 = red(image16) >. 100
+let r17 = red(image17) >. 100
+let r18 = red(image18) >. 100
+let r19 = red(image19) >. 100
+let r20 = red(image20) >. 100
+let r21 = red(image21) >. 100
+let r22 = red(image22) >. 100
+let r23 = red(image23) >. 100
+let r24 = red(image24) >. 100
+let r25 = red(image25) >. 100
+let r26 = red(image26) >. 100
+let r27 = red(image27) >. 100
+let r28 = red(image28) >. 100
+let r29 = red(image29) >. 100
+let r30 = red(image30) >. 100
+let r31 = red(image31) >. 100
+let r32 = red(image32) >. 100
+let r33 = red(image33) >. 100
+let r34 = red(image34) >. 100
+let r35 = red(image35) >. 100
+let r36 = red(image36) >. 100
+let r37 = red(image37) >. 100
+let r38 = red(image38) >. 100
+let r39 = red(image39) >. 100
+let r40 = red(image40) >. 100
+let r41 = red(image41) >. 100
+let r42 = red(image42) >. 100
+
+
+let union = r0 | r1 | r2 | r3 | r4 | r5 | r6 | r7 | r8 | r9 | r10 | r11 | r12 | r13 | r14 | r15 | r16 | r17 | r18 | r19 | r20 | r21 | r22 | r23 | r24 | r25 | r26 | r27 | r28 | r29 | r30 | r31 | r32 | r33 | r34 | r35 | r36 | r37 | r38 | r39 | r40 | r41 | r42
+let union1 = union & !rmount
+
+
+save "./outputJoin/chokeUnion.png" union1
