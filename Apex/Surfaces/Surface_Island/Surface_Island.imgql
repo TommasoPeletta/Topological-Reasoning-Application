@@ -33,4 +33,4 @@ save "./output/original.png" image
 save "./output/coloured.png" coloured
 
 
-print "Total Surface Surface" vol
+print "Total Island Surface" vol

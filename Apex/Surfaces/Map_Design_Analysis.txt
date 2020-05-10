@@ -1,0 +1,21 @@
+Map Design Analysis
+
+
+
+
+Total buildings surface : 206786.0
+
+Total mountains surface : 1249113.0
+
+Total chokes surface :
+
+Total Island surface : 4573914.0
+
+
+
+
+Ratio of buildings : 206786.0 / 4573914.0 = 0.04520985746561916 = 0.04521 = 4.521 %
+
+Ratio of mountains : 1249113.0 / 4573914.0 = 0.27309499041739743 = 0.27309 = 27.309 %
+
+Ratio of chokes surface : x / 4573914.0 = y
