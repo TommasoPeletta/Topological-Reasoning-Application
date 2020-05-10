@@ -37,8 +37,8 @@ let buildingsSegRGB = rgb(mask(r,buildingsSeg),mask(g,buildingsSeg),mask(b,build
 
 // Save outputs
 save "output/original.png" image
-save "output/treshold.png" treshold
+save "output/buildings.png" treshold
 save "output/zone.png" zone
 save "output/buildingsFiltered.png" buildingsFiltered
-save "../output/airbase_buildingsSeg.png" buildingsSeg
+save "../../output/airbase_buildingsSeg.png" buildingsSeg
 save "output/airbase_buildingsSegRGB.png" buildingsSegRGB

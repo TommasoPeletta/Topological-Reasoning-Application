@@ -4,54 +4,38 @@
 
 import "stdlib.imgql"
 
-
+// Define smoothing filter
 let flt(x,a) = distleq(x,distgeq(x,!a))
 
-
+// Read image
 load image = "the_pit.jpg"
 
 
-
+// Get colour components
 let r = red(image)
 let g = green(image)
 let b = blue(image)
 
 
-//let tendentToGray = (r >. 50) & (g >. 50) & (b >. 20) & (b <. 35) & (r <. 100) & (g <. 70)
-//save "output/tendentToGray.png" tendentToGray
+// Color treshold
+let treshold = ((r >. 75) & (g >. 75) & (b >. 65)) & (r <. 230) & (g <. 230) & (b <. 230)
 
+// Define zone of interest
+let zone = distleq(150,((r >. 200) & (g <. 11) & (b <. 11)))
 
-//let background  = touch(!tendentToGray,border)
-//save "output/background.png" background
+// Smoothing filters
+let buildingsFiltered = flt(3,(treshold))
 
-// Montagne :
-//let montagne = flt(2,!flt(3,background))
-//save "output/montagne.png" montagne
+// Union with zone of interest
+let buildingsSeg = and(zone, buildingsFiltered)
 
-
-
-
-
-
-// Segmentation des batiments :
-let buildings = ((r >. 75) & (g >. 75) & (b >. 65)) & (r <. 230) & (g <. 230) & (b <. 230)
-save "output/buildings.png" buildings
-
-// Masque avec la zone choisie :
-let maskCircle = distleq(150,((r >. 200) & (g <. 11) & (b <. 11)))
-save "output/maskCircle.png" maskCircle
-
-// Filtre sur les batiments :
-let buildingsFiltered = flt(3,(buildings))
-//let buildingsFiltered = flt(5,(flt(2,flt(1,(buildings)))))
-save "output/buildingsFiltered.png" buildingsFiltered
-
-// Segmentation des batiments de la zone du masque :
-let buildingsSeg = and(maskCircle, buildingsFiltered)
-save "../../output/the_pit_buildingsSeg.png" buildingsSeg
-
-// Remise des couleurs des batiments segmentes :
+// Colored buildings
 let buildingsSegRGB = rgb(mask(r,buildingsSeg),mask(g,buildingsSeg),mask(b,buildingsSeg))
-save "output/the_pit_buildingsSegRGB.png" buildingsSegRGB
 
+// Save outputs
+save "output/treshold.png" treshold
+save "output/zone.png" zone
+save "output/buildingsFiltered.png" buildingsFiltered
+save "../../output/the_pit_buildingsSeg.png" buildingsSeg
+save "output/the_pit_buildingsSegRGB.png" buildingsSegRGB
 save "output/original.png" image
