@@ -1,0 +1,36 @@
+import "stdlib.imgql"
+
+// filter function definition
+let flt(x,a) = distleq(x,distgeq(x,!a))
+
+// load original image
+load image = "Apex_map.jpg"
+
+// read image components
+let r = red(image)
+let g = green(image)
+let b = blue(image)
+
+
+
+// colour treshold
+let treshold = (r >. 40) & (g >. 40) & (b >. 50) & (r <. 100) & (g <. 150) & (b <. 255)
+
+// smoothing filters
+let filtered1 = touch(treshold,border)
+let seg = flt(1,!filtered1)
+
+// application of original image on result
+let coloured = rgb(mask(r,seg),mask(g,seg),mask(b,seg))
+
+// Surface computation :
+let vol = volume(seg)
+
+// save outputs
+save "./output/treshold.png" treshold
+save "./output/segmented.png" seg
+save "./output/original.png" image
+save "./output/coloured.png" coloured
+
+
+print "Total Surface Surface" vol
