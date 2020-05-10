@@ -4,9 +4,9 @@ import "stdlib.imgql"
 let flt(x,a) = distleq(x,distgeq(x,!a))
 
 // load original image
+
 load image1 = "./Mount_Images/mountain_1.jpg"
 load image2 = "./Mount_Images/mountain_2.jpg"
-
 
 // read image components
 let r1 = red(image1)
