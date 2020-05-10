@@ -7,7 +7,7 @@ Total buildings surface : 206786.0
 
 Total mountains surface : 1249113.0
 
-Total chokes surface :
+Total chokes surface : 135515.0
 
 Total Island surface : 4573914.0
 
@@ -18,4 +18,4 @@ Ratio of buildings : 206786.0 / 4573914.0 = 0.04520985746561916 = 0.04521 = 4.52
 
 Ratio of mountains : 1249113.0 / 4573914.0 = 0.27309499041739743 = 0.27309 = 27.309 %
 
-Ratio of chokes surface : x / 4573914.0 = y
+Ratio of chokes surface : 135515.0 / 4573914.0 = 0.02962779798658217 = 0.02963 = 2.963 %
