@@ -1,5 +1,5 @@
 % read image
-I = imread('union.png');
+I = imread('chokeUnion.png');
 
 %to binary
 I = im2bw(I);
