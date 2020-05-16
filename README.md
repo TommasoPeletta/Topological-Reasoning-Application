@@ -1,16 +1,12 @@
 # Topological-Reasoning-Application
 
 
-# Project
-
-Topological-Reasoning-Application
-
 ### Description
 
-This project consists of exploring the use of model logic to reason about topological properties.
-More precisely we will test the limits and the strong points of VoxLogicA, a spatial model checker used for image analysis.
-The idea is to take some videogames' map and segment some attribute of it.
-We focused in the Apex legend season 1 map and we have segmented the buildings, the mountains and the choke points.
+This project consists of exploring the use of model logic to reason about topological properties.  
+More precisely we will test the limits and the strong points of VoxLogicA, a spatial model checker used for image analysis.  
+The idea is to take some videogames' map and segment some attribute of it.  
+We focused in the Apex legend season 1 map and we have segmented the buildings, the mountains and the choke points.  
 For more information you can look at the References and the Docs folder.
 
 
